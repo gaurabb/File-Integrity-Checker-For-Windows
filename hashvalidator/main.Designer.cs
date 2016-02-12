@@ -45,8 +45,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.mstripMain = new System.Windows.Forms.MenuStrip();
+            this.selectHashTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.simpleHashToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.keyedHashToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.mstripMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileToValidate
@@ -57,7 +62,7 @@
             // 
             this.btnBrowse.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBrowse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnBrowse.Location = new System.Drawing.Point(299, 149);
+            this.btnBrowse.Location = new System.Drawing.Point(299, 180);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(34, 31);
             this.btnBrowse.TabIndex = 0;
@@ -68,7 +73,7 @@
             // lblFileSelection
             // 
             this.lblFileSelection.AutoSize = true;
-            this.lblFileSelection.Location = new System.Drawing.Point(18, 160);
+            this.lblFileSelection.Location = new System.Drawing.Point(18, 191);
             this.lblFileSelection.Name = "lblFileSelection";
             this.lblFileSelection.Size = new System.Drawing.Size(197, 20);
             this.lblFileSelection.TabIndex = 1;
@@ -77,7 +82,7 @@
             // lblHash
             // 
             this.lblHash.AutoSize = true;
-            this.lblHash.Location = new System.Drawing.Point(18, 39);
+            this.lblHash.Location = new System.Drawing.Point(18, 70);
             this.lblHash.Name = "lblHash";
             this.lblHash.Size = new System.Drawing.Size(195, 20);
             this.lblHash.TabIndex = 3;
@@ -85,7 +90,7 @@
             // 
             // txtHashValue
             // 
-            this.txtHashValue.Location = new System.Drawing.Point(299, 36);
+            this.txtHashValue.Location = new System.Drawing.Point(299, 67);
             this.txtHashValue.Multiline = true;
             this.txtHashValue.Name = "txtHashValue";
             this.txtHashValue.Size = new System.Drawing.Size(250, 63);
@@ -94,7 +99,7 @@
             // lblHashAlgorithmDetected
             // 
             this.lblHashAlgorithmDetected.AutoSize = true;
-            this.lblHashAlgorithmDetected.Location = new System.Drawing.Point(18, 114);
+            this.lblHashAlgorithmDetected.Location = new System.Drawing.Point(18, 145);
             this.lblHashAlgorithmDetected.Name = "lblHashAlgorithmDetected";
             this.lblHashAlgorithmDetected.Size = new System.Drawing.Size(191, 20);
             this.lblHashAlgorithmDetected.TabIndex = 5;
@@ -111,7 +116,7 @@
             "SHA-256",
             "SHA-384",
             "SHA-512"});
-            this.cbHashAlgorithms.Location = new System.Drawing.Point(299, 105);
+            this.cbHashAlgorithms.Location = new System.Drawing.Point(299, 136);
             this.cbHashAlgorithms.Name = "cbHashAlgorithms";
             this.cbHashAlgorithms.Size = new System.Drawing.Size(121, 28);
             this.cbHashAlgorithms.TabIndex = 7;
@@ -121,7 +126,7 @@
             // 
             this.btnCalculateHash.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCalculateHash.ForeColor = System.Drawing.Color.DimGray;
-            this.btnCalculateHash.Location = new System.Drawing.Point(695, 271);
+            this.btnCalculateHash.Location = new System.Drawing.Point(695, 302);
             this.btnCalculateHash.Name = "btnCalculateHash";
             this.btnCalculateHash.Size = new System.Drawing.Size(112, 63);
             this.btnCalculateHash.TabIndex = 8;
@@ -132,7 +137,7 @@
             // lblKey
             // 
             this.lblKey.AutoSize = true;
-            this.lblKey.Location = new System.Drawing.Point(18, 214);
+            this.lblKey.Location = new System.Drawing.Point(18, 245);
             this.lblKey.Name = "lblKey";
             this.lblKey.Size = new System.Drawing.Size(165, 20);
             this.lblKey.TabIndex = 9;
@@ -141,7 +146,7 @@
             // checkBoxHasKey
             // 
             this.checkBoxHasKey.AutoSize = true;
-            this.checkBoxHasKey.Location = new System.Drawing.Point(299, 218);
+            this.checkBoxHasKey.Location = new System.Drawing.Point(299, 249);
             this.checkBoxHasKey.Name = "checkBoxHasKey";
             this.checkBoxHasKey.Size = new System.Drawing.Size(15, 14);
             this.checkBoxHasKey.TabIndex = 10;
@@ -152,7 +157,7 @@
             this.txtResults.BackColor = System.Drawing.Color.AntiqueWhite;
             this.txtResults.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtResults.Location = new System.Drawing.Point(6, 26);
+            this.txtResults.Location = new System.Drawing.Point(6, 57);
             this.txtResults.Multiline = true;
             this.txtResults.Name = "txtResults";
             this.txtResults.ReadOnly = true;
@@ -164,7 +169,7 @@
             // 
             this.lblSelectedFileConfirmation.AutoSize = true;
             this.lblSelectedFileConfirmation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectedFileConfirmation.Location = new System.Drawing.Point(339, 160);
+            this.lblSelectedFileConfirmation.Location = new System.Drawing.Point(339, 191);
             this.lblSelectedFileConfirmation.Name = "lblSelectedFileConfirmation";
             this.lblSelectedFileConfirmation.Size = new System.Drawing.Size(100, 13);
             this.lblSelectedFileConfirmation.TabIndex = 13;
@@ -186,7 +191,7 @@
             this.groupBox1.Controls.Add(this.cbHashAlgorithms);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.DimGray;
-            this.groupBox1.Location = new System.Drawing.Point(12, 100);
+            this.groupBox1.Location = new System.Drawing.Point(12, 131);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(609, 333);
             this.groupBox1.TabIndex = 14;
@@ -196,7 +201,7 @@
             // 
             this.btnBrowseKeyFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBrowseKeyFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnBrowseKeyFile.Location = new System.Drawing.Point(299, 264);
+            this.btnBrowseKeyFile.Location = new System.Drawing.Point(299, 295);
             this.btnBrowseKeyFile.Name = "btnBrowseKeyFile";
             this.btnBrowseKeyFile.Size = new System.Drawing.Size(34, 31);
             this.btnBrowseKeyFile.TabIndex = 15;
@@ -206,7 +211,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 275);
+            this.label1.Location = new System.Drawing.Point(18, 306);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(126, 20);
             this.label1.TabIndex = 14;
@@ -217,7 +222,7 @@
             this.groupBox2.Controls.Add(this.txtResults);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(650, 100);
+            this.groupBox2.Location = new System.Drawing.Point(650, 131);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(263, 143);
             this.groupBox2.TabIndex = 15;
@@ -227,11 +232,42 @@
             // 
             this.groupBox3.BackColor = System.Drawing.Color.MidnightBlue;
             this.groupBox3.BackgroundImage = global::hashvalidator.Properties.Resources.bg;
-            this.groupBox3.Location = new System.Drawing.Point(2, 3);
+            this.groupBox3.Location = new System.Drawing.Point(2, 34);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(922, 106);
             this.groupBox3.TabIndex = 16;
             this.groupBox3.TabStop = false;
+            // 
+            // mstripMain
+            // 
+            this.mstripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectHashTypeToolStripMenuItem});
+            this.mstripMain.Location = new System.Drawing.Point(0, 0);
+            this.mstripMain.Name = "mstripMain";
+            this.mstripMain.Size = new System.Drawing.Size(925, 24);
+            this.mstripMain.TabIndex = 17;
+            this.mstripMain.Text = "menuStrip1";
+            // 
+            // selectHashTypeToolStripMenuItem
+            // 
+            this.selectHashTypeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.simpleHashToolStripMenuItem,
+            this.keyedHashToolStripMenuItem});
+            this.selectHashTypeToolStripMenuItem.Name = "selectHashTypeToolStripMenuItem";
+            this.selectHashTypeToolStripMenuItem.Size = new System.Drawing.Size(109, 20);
+            this.selectHashTypeToolStripMenuItem.Text = "Select Hash Type";
+            // 
+            // simpleHashToolStripMenuItem
+            // 
+            this.simpleHashToolStripMenuItem.Name = "simpleHashToolStripMenuItem";
+            this.simpleHashToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.simpleHashToolStripMenuItem.Text = "Simple Hash";
+            // 
+            // keyedHashToolStripMenuItem
+            // 
+            this.keyedHashToolStripMenuItem.Name = "keyedHashToolStripMenuItem";
+            this.keyedHashToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.keyedHashToolStripMenuItem.Text = "Keyed Hash";
             // 
             // frmMain
             // 
@@ -243,13 +279,18 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnCalculateHash);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.mstripMain);
+            this.MainMenuStrip = this.mstripMain;
             this.Name = "frmMain";
             this.Text = "Hash Validator";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.mstripMain.ResumeLayout(false);
+            this.mstripMain.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -272,6 +313,10 @@
         private System.Windows.Forms.Button btnBrowseKeyFile;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.MenuStrip mstripMain;
+        private System.Windows.Forms.ToolStripMenuItem selectHashTypeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem simpleHashToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem keyedHashToolStripMenuItem;
     }
 }
 
