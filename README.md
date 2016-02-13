@@ -1,21 +1,21 @@
-#  File Hash Validator
-#### Validates a file's hash to confirm if the file content has been changed
-#### Windows only
+# Simple Hash Operations in Windows
 
-##  What can it do?
-Calculate a file's hash value using one of the following algorithms:
+## What can it do?
+
+1. Calculate simple hash for a given file
+2. Verify file against provided simple hash/checksum
+3. Calculate and save random 128-bit key
+4. Verify file against provided HMAC (key needed) - *this is not yet implemented*
+5. Generate HMAC for a file (key can be provided or it can generate a key for the user) - *this is not yet implemented*
+
+**Following simple algorithms are supported:**
 * MD5
 * SHA1
 * SHA256
 * SHA384
 * SHA512
 
-If an original file hash value is provided, compares the value with calculated value and shows if they match.
-if an original file hash value is not provided, the tool displays the calculated hash of the file.
-
-It can also be used to generate a HMAC with a key that the user provides or the tool generates (that the user can 
-save as a text file.)
-**HMAC implementations that are supported:**
+**Following HMAC implementations that are supported:**
 * HMACMD5
 * HMACRIPEMD160
 * HMACSHA1
