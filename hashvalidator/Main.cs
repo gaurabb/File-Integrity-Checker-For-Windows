@@ -10,7 +10,9 @@ namespace hashvalidator
 {
     public partial class frmMain : Form
     {
+        //Global Residents :)
         string FILE_TO_EVAL;
+
         public frmMain()
         {
             InitializeComponent();
@@ -28,87 +30,15 @@ namespace hashvalidator
             if (objOpenFile.ShowDialog() == DialogResult.OK)
             {
                 lblSelectedFileConfirmation.Text = objOpenFile.FileName.ToString();
-                //txtInformationSupplied.Text = txtInformationSupplied.Text + Environment.NewLine + objOpenFile.FileName.ToString();    
+                FILE_TO_EVAL = objOpenFile.FileName.ToString(); 
             }
-            FILE_TO_EVAL = objOpenFile.FileName.ToString();
+            else
+            {
+                //Do nothing for now
+            }           
         }
 
-        #region Commented_Code
-
-        /// <summary>
-        /// Calculate the hash value based on the hash algorith type  selected by the user
-        /// Default to SHA1
-        /// </summary>
-        /// <param name="file">file to get the hash of</param>
-        /// <param name="hashAlgo">hash algorithm to use</param>
-        //private void CalculateHash(string file, string hashAlgo)
-        //{
-        //    string caseSwitch = hashAlgo; 
-        //    string hashValue = String.Empty;
-        //    FileStream fileStream = File.Open(file, FileMode.Open);
-        //    fileStream.Position = 0;
-        //    try
-        //    {
-        //        switch (caseSwitch)
-        //        {
-        //            case "MD5":
-        //                MD5 objMd5 = new MD5CryptoServiceProvider();
-        //                hashValue = BitConverter.ToString(objMd5.ComputeHash(fileStream)).Replace("-", String.Empty).ToLower();
-        //                break;
-        //            case "SHA-256":
-        //                SHA256 objSha256 = new SHA256CryptoServiceProvider();
-        //                hashValue = BitConverter.ToString(objSha256.ComputeHash(fileStream)).Replace("-", String.Empty).ToLower();
-        //                break;
-        //            case "SHA-384":
-        //                SHA384 objSha384 = new SHA384CryptoServiceProvider();
-        //                hashValue = BitConverter.ToString(objSha384.ComputeHash(fileStream)).Replace("-", String.Empty).ToLower();
-        //                break;
-        //            default:
-        //                SHA1 objSha1 = new SHA1CryptoServiceProvider();
-        //                hashValue = BitConverter.ToString(objSha1.ComputeHash(fileStream)).Replace("-", String.Empty).ToLower();
-        //                break;
-        //        }
-        //        if (String.IsNullOrEmpty(txtHashValue.Text))
-        //        {
-        //            txtResults.Text = hashValue;
-        //        }
-        //        else
-        //        {
-        //            if (String.Equals(hashValue, txtHashValue.Text))
-        //            {
-        //                txtResults.BackColor = System.Drawing.Color.Green;
-        //                txtResults.Text = "Valid File!!!";
-        //            }
-        //            else
-        //            {
-        //                txtResults.BackColor = System.Drawing.Color.Red;
-        //                txtResults.Text = "Invalid File!!";
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error calculating the hash. Please try again.");
-        //    }
-        //    finally
-        //    {
-        //        fileStream.Close();
-        //    }
-        //}
-
-        /// <summary>
-        /// Calculates the HMAC based on key provided and the HMAC algorithm selected by the user
-        /// Defaults to HMACSHA1
-        /// </summary>
-        /// <param name="file">file to get the HMAC of</param>
-        /// <param name="hmacAlgo">HMAC algorithm to use</param>
-        /// <param name="hmacKey">Key supplied by the user</param>
-        //private void CalculateHMAC(string file, string hmacAlgo, string hmacKey)
-        //{
-
-        //}
-
-        #endregion
+        
 
         /// <summary>
         /// Start the hash calculation process. Triggers when the user clicks on 
@@ -154,6 +84,12 @@ namespace hashvalidator
             {
                 MessageBox.Show(returnedCalculation[1]);
             }
+        }
+
+        private void keyedHashToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var formHMacCalc = new frmHmac();
+            formHMacCalc.Show();
         }
     }
 }
