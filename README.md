@@ -24,7 +24,5 @@ save as a text file.)
 * HMACSHA512
 
 ##  How to use?
-** Method 1:**
-Download the EXE from the "Application" folder.
-**Method 2:**
-Clone the repo and open the solution file in Visual Studio. If you can do this, you will know how to run the file
+1. **Method 1:** Download the EXE from the "Application" folder.
+2. **Method 2:** Clone the repo and open the solution file in Visual Studio. If you can do this, you will know how to run the file
