@@ -55,6 +55,7 @@
             // lblSelectHmacFile
             // 
             this.lblSelectHmacFile.AutoSize = true;
+            this.lblSelectHmacFile.ForeColor = System.Drawing.Color.Red;
             this.lblSelectHmacFile.Location = new System.Drawing.Point(12, 69);
             this.lblSelectHmacFile.Name = "lblSelectHmacFile";
             this.lblSelectHmacFile.Size = new System.Drawing.Size(274, 13);
@@ -104,6 +105,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.Red;
             this.label1.Location = new System.Drawing.Point(12, 174);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(317, 13);
@@ -121,6 +123,7 @@
             // lblHmacAlgo
             // 
             this.lblHmacAlgo.AutoSize = true;
+            this.lblHmacAlgo.ForeColor = System.Drawing.Color.Red;
             this.lblHmacAlgo.Location = new System.Drawing.Point(12, 35);
             this.lblHmacAlgo.Name = "lblHmacAlgo";
             this.lblHmacAlgo.Size = new System.Drawing.Size(125, 13);

@@ -121,8 +121,16 @@ namespace hashvalidator
         /// <param name="e"></param>
         private void btnCalcHmac_Click(object sender, EventArgs e)
         {
+            ClassLibraries.calculator objGenKey = new ClassLibraries.calculator();
+            //Validate that the following values are available:
+            //1) HMAC algorithm is selected
+            //2) File 
+            //3) Key
+            if(cmbHmacAlgo.Text == "--Select--" || String.IsNullOrEmpty(txtFileToHmac.Text) || String.IsNullOrEmpty(txtHmacKey.Text))
+            {
+                MessageBox.Show("All the fields in RED must be selected!");
+            }
 
         }
-
     }
 }
