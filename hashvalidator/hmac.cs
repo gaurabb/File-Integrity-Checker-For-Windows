@@ -24,7 +24,32 @@ namespace hashvalidator
         /// <param name="e"></param>
         private void btnSaveHmacToFile_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not implemented yet!");
+            //MessageBox.Show("Not implemented yet!");
+            try
+            {
+                string fileName;
+                MessageBox.Show("File will be saved in the format:\n[FullFilePath: <>\nKey:<>\nHMAC:<>]");
+                //ToDo: Move all Save to file code to a seperate function
+                SaveFileDialog objSaveFile = new SaveFileDialog();
+                objSaveFile.Title = "Select a location to save the HMAC";
+                objSaveFile.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+                objSaveFile.FileName = "FileHMAC-";
+                objSaveFile.InitialDirectory = @"C:\";
+                if (objSaveFile.ShowDialog() == DialogResult.OK)
+                {
+                    fileName = objSaveFile.FileName;
+                    File.WriteAllText(fileName, String.Format("File: " + txtFileToHmac.Text + Environment.NewLine + "Key: " + txtHmacKey.Text + Environment.NewLine + "HMAC: " + txtHmacValue.Text));  
+                }
+                else
+                {
+                    txtHmacKey.Text = "";
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Error saving the file: Please try again!");
+                return;
+            }
         }
 
         /// <summary>
@@ -78,6 +103,7 @@ namespace hashvalidator
                     try
                     {
                         string fileName;
+                        //ToDo: Move all Save to file code to a seperate function
                         SaveFileDialog objSaveFile = new SaveFileDialog();
                         objSaveFile.Title = "Select a location to save the key";
                         objSaveFile.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
@@ -130,7 +156,10 @@ namespace hashvalidator
             {
                 MessageBox.Show("All the fields in RED must be selected!");
             }
-
+            else
+            {
+               //Do something
+            }
         }
     }
 }
