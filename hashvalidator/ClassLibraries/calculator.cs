@@ -169,14 +169,6 @@ namespace hashvalidator.ClassLibraries
             {
                 randomGen.GetBytes(randomKey);
             }
-            //if(randomKey != null)
-            //{
-            //    //randomStrongKey = BitConverter.ToString(randomKey).Replace("-", String.Empty).ToLower();
-            //}
-            //else
-            //{
-            //    randomStrongKey = KEYGEN_ERROR_MSG;
-            //}
             return randomKey;
         }
     }
