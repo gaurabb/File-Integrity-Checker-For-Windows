@@ -14,7 +14,7 @@ namespace hashvalidator.ClassLibraries
         string SUCCESS = "success";
         string FAIL = "fail";
         string ERROR_MSG = "Error calculating the hash. Please try again.";
-        string KEYGEN_ERROR_MSG = "Error calculating the key. Please uncheck and check again.";
+        string HMAC_ERROR = "Error calculating HMAC: Please try again";        
         #endregion
         /// <summary>
         /// Calculate the hash value based on the hash algorith type  selected by the user
@@ -68,38 +68,116 @@ namespace hashvalidator.ClassLibraries
         }
 
         /// <summary>
-        /// Calculates the HMAC based on key provided and the HMAC algorithm selected by the user
+        /// Computes a keyed hash for a source file based on key provided and the HMAC algorithm selected by the user
         /// Defaults to HMACSHA1
         /// </summary>
         /// <param name="file">file to get the HMAC of</param>
         /// <param name="hmacAlgo">HMAC algorithm to use</param>
         /// <param name="hmacKey">Key supplied by the user</param>
-        public void CalculateHMAC(string file, string hmacAlgo, string hmacKey)
+        public string CalculateHMAC(string file, string hmacAlgo, byte[] hmacKey)
         {
-            //frmHmac.ActiveForm = true;
+            string resultHmac = "";
+            byte[] hashOfInputFile;
+            try
+            {
+                switch (hmacAlgo)
+                {
+                    case "HMACMD5":
+                        using (HMACMD5 hmacSha1 = new HMACMD5(hmacKey))
+                        {
+                            using (FileStream objFS = new FileStream(file, FileMode.Open))
+                            {
+                                // Computing the hash of the input file
+                                hashOfInputFile = hmacSha1.ComputeHash(objFS);
+                            }
+                        }
+                        break;
+                    case "HMACSHA256":
+                        using (HMACSHA256 hmacSha1 = new HMACSHA256(hmacKey))
+                        {
+                            using (FileStream objFS = new FileStream(file, FileMode.Open))
+                            {
+                                // Computing the hash of the input file
+                                hashOfInputFile = hmacSha1.ComputeHash(objFS);
+                            }
+                        }
+                        break;
+                    case "HMACSHA384":
+                        using (HMACSHA384 hmacSha1 = new HMACSHA384(hmacKey))
+                        {
+                            using (FileStream objFS = new FileStream(file, FileMode.Open))
+                            {
+                                // Computing the hash of the input file
+                                hashOfInputFile = hmacSha1.ComputeHash(objFS);
+                            }
+                        }
+                        break;
+                    case "HMACSHA512":
+                        using (HMACSHA512 hmacSha1 = new HMACSHA512(hmacKey))
+                        {
+                            using (FileStream objFS = new FileStream(file, FileMode.Open))
+                            {
+                                // Computing the hash of the input file
+                                hashOfInputFile = hmacSha1.ComputeHash(objFS);
+                            }
+                        }
+                        break;
+                    case "HMACRIPEMD160":
+                        using (HMACRIPEMD160 hmacSha1 = new HMACRIPEMD160(hmacKey))
+                        {
+                            using (FileStream objFS = new FileStream(file, FileMode.Open))
+                            {
+                                // Computing the hash of the input file
+                                hashOfInputFile = hmacSha1.ComputeHash(objFS);
+                            }
+                        }
+                        break;
+                    default:// "HMACSHA1":
+                        using (HMACSHA1 hmacSha1 = new HMACSHA1(hmacKey))
+                        {
+                            using(FileStream objFS = new FileStream(file, FileMode.Open))
+                            {
+                                // Computing the hash of the input file
+                                hashOfInputFile = hmacSha1.ComputeHash(objFS);
+                            }
+                        }
+                        break;
+                }
+                resultHmac = BitConverter.ToString(hashOfInputFile).Replace("-", String.Empty).ToLower();
+                return resultHmac;
+             }
+            catch
+            {
+                resultHmac = HMAC_ERROR;
+                return resultHmac;
+            }
+            finally
+            {
+
+            }
         }
 
         /// <summary>
-        /// 
+        /// Generates a random key and returns the key value
         /// </summary>
         /// <returns></returns>
-        public string GenerateRandomKey()
+        public byte[] GenerateRandomKey()
         {
-            string randomStrongKey;
+            //string randomStrongKey;
             byte[] randomKey = new byte[128];
             using (RandomNumberGenerator randomGen = new RNGCryptoServiceProvider())
             {
                 randomGen.GetBytes(randomKey);
             }
-            if(randomKey != null)
-            {
-                randomStrongKey = BitConverter.ToString(randomKey).Replace("-", String.Empty).ToLower();
-            }
-            else
-            {
-                randomStrongKey = KEYGEN_ERROR_MSG;
-            }
-            return randomStrongKey;
+            //if(randomKey != null)
+            //{
+            //    //randomStrongKey = BitConverter.ToString(randomKey).Replace("-", String.Empty).ToLower();
+            //}
+            //else
+            //{
+            //    randomStrongKey = KEYGEN_ERROR_MSG;
+            //}
+            return randomKey;
         }
     }
 }

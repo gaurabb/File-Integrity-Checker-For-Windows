@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 
 using System.IO;
+using hashvalidator;
 
 namespace hashvalidator
 {
@@ -10,7 +11,9 @@ namespace hashvalidator
     {
         //Global Residents :)
         string FILE_TO_HMAC;
-        string RANDOM_KEY;
+        byte[] RANDOM_KEY_BYTES;
+        string KEYGEN_ERROR_MSG = "Error calculating the key. Please uncheck and check again.";
+        string HMAC_ERROR = "Error calculating HMAC: Please try again";
 
         public frmHmac()
         {
@@ -18,7 +21,7 @@ namespace hashvalidator
         }
 
         /// <summary>
-        /// 
+        /// This method will be used to Save a newly generated HMAC value in a file
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -38,7 +41,7 @@ namespace hashvalidator
                 if (objSaveFile.ShowDialog() == DialogResult.OK)
                 {
                     fileName = objSaveFile.FileName;
-                    File.WriteAllText(fileName, String.Format("File: " + txtFileToHmac.Text + Environment.NewLine + "Key: " + txtHmacKey.Text + Environment.NewLine + "HMAC: " + txtHmacValue.Text));  
+                    File.WriteAllText(fileName, String.Format("File: " + txtFileToHmac.Text + Environment.NewLine + "Key: " + txtHmacKey.Text + Environment.NewLine + "HMAC: " + txtHmacValue.Text));
                 }
                 else
                 {
@@ -53,7 +56,7 @@ namespace hashvalidator
         }
 
         /// <summary>
-        /// 
+        /// This method will be used to open the file for which the HMAC has to be calculated
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -62,7 +65,7 @@ namespace hashvalidator
             string selectedFile;
             OpenFileDialog objOpenFileToHmac = new OpenFileDialog();
             objOpenFileToHmac.Title = "Select a file to calculate HMAC";
-            if(objOpenFileToHmac.ShowDialog()== DialogResult.OK)
+            if (objOpenFileToHmac.ShowDialog() == DialogResult.OK)
             {
                 selectedFile = objOpenFileToHmac.FileName.ToString();
                 lblSelectedFileValue.Text = selectedFile;
@@ -88,7 +91,7 @@ namespace hashvalidator
         }
 
         /// <summary>
-        /// 
+        /// This method handles the user event on clicking the "Generate key" checkbox.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -97,8 +100,8 @@ namespace hashvalidator
             if (txtHmacKey.Text != String.Empty && cbGenerateKey.Checked != true)
             {
                 MessageBoxButtons choices = MessageBoxButtons.YesNo;
-                DialogResult userChoice = MessageBox.Show("Do you want to save the key?", "Please confirm?",choices);                
-                if(userChoice == DialogResult.Yes)
+                DialogResult userChoice = MessageBox.Show("Do you want to save the key?", "Please confirm?", choices);
+                if (userChoice == DialogResult.Yes)
                 {
                     try
                     {
@@ -135,30 +138,47 @@ namespace hashvalidator
             if (cbGenerateKey.Checked == true && txtHmacKey.Text == String.Empty)
             {
                 ClassLibraries.calculator objGenKey = new ClassLibraries.calculator();
-                RANDOM_KEY = objGenKey.GenerateRandomKey();
-                txtHmacKey.Text = RANDOM_KEY;
+                RANDOM_KEY_BYTES = objGenKey.GenerateRandomKey();
+                if (RANDOM_KEY_BYTES != null)
+                {
+                    txtHmacKey.Text = BitConverter.ToString(RANDOM_KEY_BYTES).Replace("-", String.Empty).ToLower();
+                }
+                else
+                {
+                    MessageBox.Show(KEYGEN_ERROR_MSG);
+                }
             }
         }
 
         /// <summary>
-        /// 
+        /// This method handles the initial validation of parameters for the HMAC genenaration process
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnCalcHmac_Click(object sender, EventArgs e)
         {
-            ClassLibraries.calculator objGenKey = new ClassLibraries.calculator();
             //Validate that the following values are available:
             //1) HMAC algorithm is selected
             //2) File 
             //3) Key
-            if(cmbHmacAlgo.Text == "--Select--" || String.IsNullOrEmpty(txtFileToHmac.Text) || String.IsNullOrEmpty(txtHmacKey.Text))
+            if (cmbHmacAlgo.Text == "--Select--" || String.IsNullOrEmpty(txtFileToHmac.Text) || String.IsNullOrEmpty(txtHmacKey.Text))
             {
                 MessageBox.Show("All the fields in RED must be selected!");
             }
             else
             {
-               //Do something
+                // If all goes well, pass the values to the CalculateHMAC function in hashvalidator.ClassLibraries.calculator class
+                // Too much input validation is intentionally avoided
+                ClassLibraries.calculator objCalc = new ClassLibraries.calculator();
+                string HMACResult = objCalc.CalculateHMAC(txtFileToHmac.Text, cmbHmacAlgo.Text, RANDOM_KEY_BYTES);
+                if (!String.IsNullOrEmpty(HMACResult) && !String.Equals(HMACResult, HMAC_ERROR))
+                {
+                    txtHmacValue.Text = HMACResult;
+                }
+                else
+                {
+                    MessageBox.Show(HMACResult);
+                }
             }
         }
     }
