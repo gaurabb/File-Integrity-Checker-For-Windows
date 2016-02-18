@@ -19,6 +19,7 @@ namespace hashvalidator.ClassLibraries
         /// <summary>
         /// Calculate the hash value based on the hash algorith type  selected by the user
         /// Default to SHA1
+        /// This result from is used for both generating a hash value as well as validating the file hash
         /// </summary>
         /// <param name="file">file to get the hash of</param>
         /// <param name="hashAlgo">hash algorithm to use</param>
@@ -155,6 +156,18 @@ namespace hashvalidator.ClassLibraries
             {
 
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="file"></param>
+        /// <param name="hmacAlgo"></param>
+        /// <param name="hmacKey"></param>
+        /// <returns></returns>
+        public void ValidateFileHMAC(string file, string hmacAlgo, byte[] hmacKey)
+        {
+
         }
 
         /// <summary>

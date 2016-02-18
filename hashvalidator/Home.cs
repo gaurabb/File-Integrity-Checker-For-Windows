@@ -38,13 +38,16 @@ namespace hashvalidator
 
         private void rdbtnValidateFileHmac_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not implemented yet!");
+            var formValidateFileWHmac = new frmFilehmacvalidator();
+            formValidateFileWHmac.Show();
         }
 
         private void frmHome_Load(object sender, EventArgs e)
         {
             grpBoxHome.Select();
         }
+
+        
         
     }
 }

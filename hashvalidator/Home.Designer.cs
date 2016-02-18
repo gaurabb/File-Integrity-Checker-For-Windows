@@ -71,6 +71,7 @@
             this.rdbtnValidateFileHmac.TabStop = true;
             this.rdbtnValidateFileHmac.Text = "Validate File w/HMAC";
             this.rdbtnValidateFileHmac.UseVisualStyleBackColor = true;
+            
             this.rdbtnValidateFileHmac.Click += new System.EventHandler(this.rdbtnValidateFileHmac_Click);
             // 
             // rdbValidateFileWSimpleHash
